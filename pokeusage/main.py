@@ -3,10 +3,14 @@ import os
 import openpyxl
 
 
+def qexit():
+    os.system('pause')
+    sys.exit()
+
 def main():
     if len(sys.argv) < 2 or not os.path.exists(sys.argv[1]):
         print("输入文件错误", file=sys.stderr)
-        sys.exit()
+        qexit()
     filename = sys.argv[1]
     wb = openpyxl.load_workbook(filename)
     stats = {}
@@ -28,7 +32,7 @@ def main():
                         if v not in stats:
                             stats[v] = [0, 0]
                         stats[v][0] += 1
-                        if column[i+j].style.font.color.rgb=='FFFF0000':
+                        if column[i+j].font.color.rgb=='FFFF0000':
                             stats[v][1] += 1
                     i += 5
                 i += 1
@@ -46,7 +50,8 @@ def main():
     with open('result.txt', 'w', encoding='utf-8') as fo:
         for each in results:
             print('%s\t%d\t%d\t%.2f%%\t%.2f%%' % each, file=fo)
-
+    print('统计完毕')
+    qexit()
 
 if __name__ == '__main__':
     main()
