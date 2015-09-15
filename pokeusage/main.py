@@ -1,3 +1,7 @@
+'''Copyright © 2015 Sunoru Sidw <s@sunoru.com>
+MIT license
+http://sunoru.mit-license.org/
+'''
 import sys
 import os
 import openpyxl
